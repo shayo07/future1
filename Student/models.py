@@ -7,11 +7,8 @@ class Mwanafunzi(models.Model):
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     middle_name= models.CharField(max_length=40)
-<<<<<<< HEAD
     dob = models.DateField(default='2022-12-12')
-=======
     dob = models.DateField(default=2022-12-12)
->>>>>>> c93b987 (my second commit)
     address = models.CharField(max_length=50)
     parent_phone = models.CharField(max_length=13)
     year_administered = models.CharField(max_length=4, default='2049')
