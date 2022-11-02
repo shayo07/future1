@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+
+{% block where %}
+<li>add class</li>
+{% endblock %}
+
+{% block content-title %}
+    <h3>ADD CLASSES</h3>
+{% endblock %}
+
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+  <input type="submit" name="add_class">
+</form>
+
+
+{% endblock %}}

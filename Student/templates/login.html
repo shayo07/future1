@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+
+{% block content-title %}
+
+{% endblock %}
+
+
+{% block content %}
+
+ <div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <h3>LOGIN</h3>
+        <label for="username">username</label>
+        <input type="text" name="username">
+        <br>
+        <br>
+        <label for="password">password</label>
+        <input type="password" name="password">
+        <br>
+        <br>
+        <input type="submit" name="login">
+<br>
+<br>
+<p>forgot password?: <a href="{% url 'reset_password' %}">reset password</a></p>
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+
+    </form>
+
+ </div>
+
+{% endblock %}

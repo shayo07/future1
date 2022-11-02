@@ -1,0 +1,228 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view lessonplan</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW {{ obj1 }} LESSONPLAN</h3>
+{% endblock %}
+
+
+{% block content %}
+
+<div>
+   <button style="background-color:#149ddd;">
+     <a href="{% url 'add_lplan' pk_test=obj1 %}" style="color: white;">add lessonplan</a>
+   </button>
+</div>
+ <h4>lesson plan</h4>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+          <th scope="col" width="50%">lessonplan_name</th>
+          <th scope="col" width="50%">period</th>
+          <th scope="col" width="50%">time</th>
+          <th scope="col" width="50%">boys registered</th>
+          <th scope="col" width="50%">girls registered</th>
+          <th scope="col" width="50%">boys present</th>
+          <th scope="col" width="50%">girls present</th>
+          <th scope="col" width="50%">competence</th>
+          <th scope="col" width="50%">topic</th>
+          <th scope="col" width="50%">subtopic (list_them_all)</th>
+          <th scope="col" width="50%">general_objectives</th>
+          <th scope="col" width="50%">specific_objectives</th>
+          <th scope="col" width="50%">learning_materials</th>
+          <th scope="col" width="50%">reference</th>
+          {% if not a %}
+          <th scope="col" width="10%">edit</th>
+          <th scope="col" width="10%">delete</th>
+          {% endif %}
+         </tr>
+          {% for journ in obj2 %}
+       <tr>
+               <td>
+                  {{ journ.lesson_id }}
+               </td>
+               <td>
+                   {{ journ.period }}
+               </td>
+               <td>
+                {{ journ.time }}
+               </td>
+               <td>
+                {{ journ.boy_registered }}
+             </td>
+             <td>
+                {{ journ.girls_registered }}
+             </td>
+             <td>
+                {{ journ.boy_present }}
+             </td>
+             <td>
+                {{ journ.girls_present }}
+             </td>
+             <td>
+                {{ journ.competence }}
+             </td>
+             <td>
+                {{ journ.topic }}
+             </td>
+             <td>
+                {{ journ.sub_topic }}
+             </td>
+             <td>
+                {{ journ.general_objectives }}
+             </td>
+             <td>
+                {{ journ.specific_objectives }}
+             </td>
+             <td>
+                {{ journ.T_learning_materials }}
+             </td>
+             <td>
+                {{ journ.reference }}
+             </td>
+               
+               {% if not a %}
+               <td>
+                  <button style="background-color: orange;"><a href="{% url 'edit_lplan' pk_test=journ.id %}" style="color: white;">edit</a></button>
+                 </td>
+               
+               <td>
+                   <button style="background-color: red;"><a href="{% url 'remove_lplan' pk_test=journ.id %}" onclick="return confirm('delete this plan!')" style="color: white;">delete</a></button>
+               </td>
+               {% endif %}
+           {% endfor %}
+       </tr>
+      </table>
+          
+    </div>
+                
+</div>
+
+<br>
+<br>
+
+
+
+<div>
+   <button style="background-color:#149ddd;">
+      <a href="{% url 'add_ldev' pk_test=obj1 %}" style="color: white;">add lesson development</a>
+   </button>
+</div>
+<h3>lesson development</h3>
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+          <th scope="col" width="10%">lessonplan name</th>
+          <th scope="col" width="10%">stage</th>
+          <th scope="col" width="10%">time</th>
+          <th scope="col" width="10%">teaching_activities</th>
+          <th scope="col" width="10%">learning_activities</th>
+          <th scope="col" width="10%">assesment</th>
+          {% if not a %}
+          <th scope="col" width="10%">edit</th>
+          <th scope="col" width="10%">delete</th>
+          {% endif %}
+         </tr>
+          {% for journ in obj3 %}
+       <tr>
+               <td>
+                  {{ journ.lesson_id }}
+               </td>
+               <td>
+                   {{ journ.stage }}
+               </td>
+               <td>
+                {{ journ.time }}
+               </td>
+               <td>
+                {{ journ.teaching_activities }}
+             </td>
+             <td>
+                {{ journ.learning_activities }}
+             </td>
+             <td>
+                {{ journ.assesment }}
+             </td>
+            
+             {% if not a %}
+               <td>
+                  <button  style="background-color: orange;"><a href="{% url 'edit_ldev' pk_test=journ.id %}">edit</a></button>
+                 </td>
+               
+               <td>
+                   <button style="background-color: red;"><a href="{% url 'remove_ldev' pk_test=journ.id %}" onclick="return confirm('delete lesson develeopment!')" style="color: white ;">delete</a></button>
+               </td>
+               {% endif %}
+           {% endfor %}
+       </tr>
+      </table>
+    
+    </div>
+                
+</div>
+
+<br>
+<br>
+
+<div>
+   <button style="background-color:#149ddd;">
+<a href="{% url 'add_leval' pk_test=obj1 %}" style="color: white;">add lesson evaluation</a>
+</button>
+</div>
+    <h3>lesson evaluation</h3>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+          <th scope="col" width="10%">lessonplan name</th>
+          <th scope="col" width="10%">student_evaluation</th>
+          <th scope="col" width="10%">teacher_evaluation</th>
+          <th scope="col" width="10%">remarks</th>
+        
+          {% if not a %}
+          <th scope="col" width="10%">edit</th>
+          <th scope="col" width="10%">delete</th>
+          {% endif %}
+         </tr>
+          {% for journ in obj4 %}
+       <tr>
+               <td>
+                  {{ journ.lesson_id }}
+               </td>
+               <td>
+                   {{ journ.student_eval }}
+               </td>
+               <td>
+                {{ journ.teacher_eval }}
+               </td>
+               <td>
+                {{ journ.remarks }}
+             </td>
+
+               {% if not a %}
+               <td>
+                  <button style="background-color: orange;"><a href="{% url 'edit_leval' pk_test=journ.id %}" style="color: white;">edit</a></button>
+                 </td>
+               
+               <td>
+                   <button style="background-color: red;"><a href="{% url 'remove_leval' pk_test=journ.id %}" onclick="return confirm('delete report!')" style="color: white;">delete</a></button>
+               </td>
+               {% endif %}
+           {% endfor %}
+       </tr>
+      </table>
+          
+    </div>
+                
+</div>
+
+
+{% endblock %}

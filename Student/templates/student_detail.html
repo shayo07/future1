@@ -1,0 +1,65 @@
+{% extends 'home.html' %}
+
+{% block where %}
+<li>student details</li>
+{% endblock %}
+
+{% block content-title %}
+    <h3> STUDENT DETAILS</h3>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>student_id: </th>
+            <td> {{ obj.student_id }} </td>
+        </tr>
+
+        <tr>
+            <th>first name: </th>
+            <td> {{ obj.first_name }} </td>
+        </tr>
+
+        <tr>
+            <th>last name: </th>
+            <td> {{ obj.last_name }} </td>
+        </tr>
+
+        <tr>
+            <th>middle_name: </th>
+            <td> {{ obj.middle_name }} </td>
+        </tr>
+
+        <tr>
+            <th>address: </th>
+            <td> {{ obj.address }} </td>
+        </tr>
+
+        <tr>
+            <th>parent's phone: </th>
+            <td> {{ obj.parent_phone }} </td>
+        </tr>
+
+        <tr>
+            <th>date of birth: </th>
+            <td> {{ obj.dob }} </td>
+        </tr>
+
+        <tr>
+            <th>year administered: </th>
+            <td> {{ obj.year_administered }} </td>
+        </tr>
+        <tr>
+            <th>student result: </th>
+            <td> <a href="{% url 'student_result' pk_test=obj.student_id %}">view</a> </td>
+        </tr>
+
+    </table>
+    {% if a %}
+    <a href="{% url 'edit_student' pk_test=obj.student_id %}"> <u>edit student</u> </a> <br>
+    <br>
+    <a href="{% url 'delete_student' pk_test=obj.student_id %}"><u>remove student</u></a>
+    {% endif %}
+ 
+
+{% endblock %}

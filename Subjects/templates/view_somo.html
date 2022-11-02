@@ -1,0 +1,76 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view subjects</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW SUBJECT</h3>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+                        {% if a %}
+                       <div>
+                        <button style="background-color: #149ddd;">
+                          <a href="{% url 'add_subject' %}" style="color: white;">add subject</a> 
+                        </button>
+                       </div>                 
+                        {% endif %}
+
+<hr>
+                        <div>
+                          <form action="" method="post">
+                            {% csrf_token %}
+                            {{ myfilter.form }}
+                            <button type="submit" style="background-color:#149ddd; color: white;">search</button>
+                          </form>
+                        </div>
+                <div class="table-responsive">
+                  
+                <table class="table table-responsive table-borderless">
+                  <table>
+                  <thead>
+                    <tr class="bg-light">
+                      <th scope="col" width="20%">SUBJECTS</th>
+                      <th scope="col" width="20%">CLASS</th>
+                      <th scope="col" width="20%">CLASS TEACHER</th>
+                      <th scope="col" width="20%">SUBJECT RESULTS</th>
+                      {% if a %}
+                      <th scope="col" width="20%">REMOVE SUBJECT</th>
+                      {% endif %}
+                      
+                    </tr>
+                  </thead>
+              <tbody>
+                {% for obj in obj %}
+                <tr>
+                    <td>{{ obj.subject_name }}</td>
+                    <td>{{ obj.class_id }}</td>
+                    <td>{{ obj.teacher }}</td>
+                    <td><button style="background-color: green;">
+                      <a href="{% url 'result_list' pk_test=obj.subject_name %}" style="color: white;">view result</a>
+                    </button></td>
+                    {% if a %}
+                    <td>
+                      <button style="background-color: red;">
+                        <a href="{% url 'remove_somo' pk_test=obj.subject_name %}" onclick="return confirm('delete class?')" style="color: white;">remove</a>
+                      </button>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+              
+              </tbody>
+            </table>
+          
+              </div>
+                
+            </div>
+
+
+{% endblock %}

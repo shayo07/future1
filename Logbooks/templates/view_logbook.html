@@ -1,0 +1,97 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view logbook details </li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW {{ pk_test }} DETAILS</h3>
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if not a %}
+<button style="background-color: #149ddd;">
+<a href="{% url 'add_logbook' pk_test=pk_test %}" style="color: white;">add logbook detail</a>
+</button>
+{% endif %}
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+           <th scope="col" width="10%">s/no</th>
+           <th scope="col" width="10%">week</th>
+           <th scope="col" width="10%">month</th>
+           <th scope="col" width="10%">main_topic</th>
+           <th scope="col" width="10%">sub_topic (you_can_list_them)</th>
+           <th scope="col" width="10%">from</th>
+           <th scope="col" width="10%">to</th>
+           <th scope="col" width="10%">concept_covered</th>
+           <th scope="col" width="10%">teachers_signature</th>
+           <th scope="col" width="10%">h.o.d_signature</th>
+           <th scope="col" width="10%">head_teacher signature</th>
+           <th scope="col" width="10%">edit</th>
+           <th scope="col" width="10%">delete</th>
+         </tr>
+          {% for journ in obj %}
+       <tr>
+               <td>
+                 {{ journ.sno }}
+               </td>
+               <td>
+                   {{ journ.week_no }}
+               </td>
+               <td>
+                   {{ journ.month_no }}
+               </td>
+
+               <td>
+                {{ journ.main_topic }}
+               </td>
+               <td>
+                {{ journ.sub_topic }}
+               </td>
+               <td>
+                {{ journ.time_start }}
+               </td>
+               <td>
+                {{ journ.time_finish }}
+               </td>
+               <td>
+                {{ journ.concept_covered }}
+               </td>
+               <td>
+                {{ journ.teachers_comment }}
+               </td>
+               <td>
+                {{ journ.hod }}
+               </td>
+               <td>
+                {{ journ.head_teacher }}
+               </td>
+             
+               <td>
+                <button style="background-color: orange;">
+                  <a href="{% url 'edit_logbook'  id=journ.id %}" style="color: white;">edit</a>
+                </button>
+                
+               </td>
+               <td>
+                <button style="background-color: red;">
+                  <a href="{% url 'remove_logbook' id=journ.id %}"  style="color: white;">delete</a>
+                </button>
+                
+               </td>
+             
+          </tr>
+       {% endfor %}
+      </table>
+    </div>
+                
+</div>
+
+
+{% endblock %}

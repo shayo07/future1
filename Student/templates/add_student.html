@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+
+{% block where %}
+<li>add student</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>ADD STUDENT HERE</h3>
+{% endblock %}
+
+{% block content %}
+<section id="contact" class="contact">
+    <div class="container">
+<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+     <button type="submit">add student</button>
+    </form>
+  </div>
+    </div>  
+</section>
+
+{% endblock %}

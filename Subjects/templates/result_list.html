@@ -1,0 +1,95 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view subject result</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW SUBJECT RESULT</h3>
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <button style="background-color: #149ddd;">
+<a href="{% url 'add_result' pk_test=t.subject_name %}" style="color: white;">add result for this subject</a>
+</button>
+</div> 
+<hr>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ myfilter.form }}
+        <button type="submit" style="color: white; background-color: #149ddd;">search</button>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+                <th scope="col" width="10%">subject_name</th>
+                <th scope="col" width="10%">student_id</th>
+                <th scope="col" width="10%">test1</th>
+                <th scope="col" width="10%">test2</th>
+                <th scope="col" width="10%">test3</th>
+                <th scope="col" width="10%">mid</th>
+                <th scope="col" width="10%">test4</th>
+                <th scope="col" width="10%">test5</th>
+                <th scope="col" width="10%">total_test</th>
+                <th scope="col" width="10%">test average</th>
+                <th scope="col" width="10%">term1_exam</th>
+                <th scope="col" width="10%">total</th>
+                <th scope="col" width="10%">average</th>
+                <th scope="col" width="10%">grades</th>
+                <th scope="col" width="10%">remarks</th>
+                <th scope="col" width="10%">edit</th>
+                <th scope="col" width="10%">delete</th>
+                
+                
+            </tr>
+            {% for x in obj %}
+            <tr>
+                <td>{{ x.subject_name }}</td>
+                <td>{{ x.student_id }}</td>
+                <td>{{ x.test1 }}</td>
+                <td>{{ x.test2 }}</td>
+                <td>{{ x.test3 }}</td>
+                <td>{{ x.mid }}</td>
+                <td>{{ x.test4 }}</td>
+                <td>{{ x.test5 }}</td>
+                <td>{{ x.total_test }}</td>
+                <td>{{ x.test_average }}</td>
+                <td>{{ x.term1_exam }}</td>
+                <td>{{ x.total }}</td>
+                <td>{{ x.average }}</td>
+                <td>{{ x.grades }}</td>
+                <td>{{ x.remarks }}</td>
+    
+                <td>
+                    <button style="background-color: orange;"><a href="{% url 'edit_result' pk_test=x.id %}" style="color: white;">edit</a></button>
+                </td>
+                <td>
+                    <button style="background-color: red;"><a href="{% url 'remove_result' pk_test=x.id %}" style="color: white;" onclick="return confirm('delete this result?')">delete</a></button>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+    
+        </table>
+
+          
+    </div>
+    <div>
+        <br>
+        <button style="background-color: #149ddd;"><a href="{% url 'addtog' pk_test=t.subject_name %}" style="color: white;">post</a></button>
+    </div>
+    <br>
+ 
+    
+</div>
+
+{% endblock %}

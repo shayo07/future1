@@ -1,0 +1,73 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view main lessonplan</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW MAIN LESSONPLAN</h3>
+{% endblock %}
+
+
+{% block content %}
+
+{% if a %}
+<div>
+    <button style="background-color:#149ddd;">
+<a href="{% url 'add_stplan' %}" style="color: white;">add main lessonplan</a>
+</button>
+</div>
+{% endif %}
+
+<hr>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ myfilter.form }}
+        <button type="submit"  style="background-color:#149ddd; color: white;">search</button>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+          <th scope="col" width="10%">lessonplan name</th>
+          <th scope="col" width="10%">subject</th>
+          <th scope="col" width="10%">teacher</th>
+          <th scope="col" width="10%">view details</th>
+          {% if a %}
+          <th scope="col" width="10%">delete</th>
+          {% endif %}
+         </tr>
+          {% for journ in obj %}
+       <tr>
+               <td>
+                  {{ journ.id }}
+               </td>
+               <td>
+                   {{ journ.subject }}
+               </td>
+               <td>
+                {{ journ.username }}
+               </td>
+               <td>
+                <button style="background-color: green;"><a href="{% url 'view_tplan' pk_test=journ.id %}" style="color: white;">view</a></button>
+               </td>
+               {% if a %}
+               
+               <td>
+                   <button style="background-color: red;"><a href="{% url 'remove_stplan' pk_test=journ.id %}" style="color: white;" onclick="return confirm('delete general lessonplan')">delete</a></button>
+               </td>
+               {% endif %}
+           {% endfor %}
+       </tr>
+      </table>
+          
+    </div>
+                
+</div>
+
+
+{% endblock %}

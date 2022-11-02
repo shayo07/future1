@@ -1,0 +1,103 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view scheme details</li>
+{% endblock %}
+
+{% block content-title %}
+<h3> SCHEME: {{ pk_test }} DETAILS</h3>
+{% endblock %}
+
+{% block content %}
+<div>
+    <button style="background-color:#149ddd;">
+        <a href="{% url 'add_scheme' pk_test=pk_test %}" style="color: white;">add scheme</a>
+    </button>
+</div>
+
+    
+     <div class="table-responsive">
+        <table class="table table-responsive table-borderless">
+            <table>
+                <tr>
+            <th scope="col" width="35%">serial no</th>
+           <th scope="col" width="35%">competence</th>
+           <th scope="col" width="35%">objectives</th>
+           <th scope="col" width="35%">month</th>
+           <th scope="col" width="35%">week</th>
+           <th scope="col" width="35%">main_topic</th>
+           <th scope="col" width="35%">sub_topic</th>
+           <th scope="col" width="35%">periods</th>
+           <th scope="col" width="35%">teaching_activities</th>
+           <th scope="col" width="35%">learning_activities</th>
+           <th scope="col" width="35%">references</th>
+           <th scope="col" width="35%">teaching_aids</th>
+           <th scope="col" width="35%">assesments</th>
+           <th scope="col" width="35%">remarks</th>
+           <th scope="col" width="35%">edit</th>
+           <th scope="col" width="35%">delete</th>
+         </tr>
+          {% for object1 in obj %}
+            <tr>
+                <td>
+                    {{ object1.serial_no }}
+                </td>
+               <td>
+                   {{ object1.competence }}
+               </td>
+               <td>
+                   {{ object1.objectives }}
+               </td>
+               <td>
+                   {{ object1.month }}
+               </td>
+               <td>
+                   {{ object1.week }}
+               </td>
+               <td>
+                   {{ object1.main_topic }}
+               </td>
+               <td>
+                   {{ object1.sub_topic }}
+               </td>
+               <td>
+                   {{ object1.periods }}
+               </td>
+               <td>
+                   {{ object1.teaching_activities }}
+               </td>
+               <td>
+                   {{ object1.learning_activities }}
+               </td>
+               <td>
+                   {{ object1.references }}
+               </td>
+               <td>
+                   {{ object1.teaching_aids }}
+               </td>
+               <td>
+                   {{ object1.assesments }}
+               </td>
+               <td>
+                   {{ object1.remarks }}
+               </td>
+               <td>
+                <button style="background-color: orange;">
+                    <a href="{% url 'edit_scheme' id=object1.id %}" style="color: white;">edit</a>
+                </button>
+              </td>
+              <td>
+                <button style="background-color: red;">
+                <a href=" {% url 'delete_scheme' id=object1.id %} " style="color: white;">remove</a>
+                </button>
+              </td>
+              
+           </tr>
+           {% endfor %}
+      </table>
+    </div>
+                
+</div>
+
+{% endblock %}

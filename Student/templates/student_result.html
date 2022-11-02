@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+
+{% block where %}
+<li>classes</li>
+{% endblock %}
+
+{% block content-title %}
+    <h3>VIEW STUDENT RESULT</h3>
+{% endblock %}
+
+
+{% block content %}
+                 
+              
+   <div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+      <table>
+      <thead>
+    
+      </thead>
+  <tbody>
+    <tr class="bg-light">
+        <th scope="col" width="10%">SUBJECT</th>
+        <th scope="col" width="10%">TOTAL MARKS</th>
+        {%  for x in data %}
+        <tr>
+            <td>{{ x.subject_name }}</td> 
+            <td>{{ x.total }}</td>    
+        </tr>
+        {% endfor %}
+      
+    </tr>
+ 
+  
+  </tbody>
+</table>
+
+   
+
+{% endblock %}

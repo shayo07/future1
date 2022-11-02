@@ -1,0 +1,71 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view  attendance</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW {{ pk_test}} ATTENDANCE</h3>
+{% endblock %}
+
+
+{% block content %}
+
+{% if  not a %}
+<button style="background-color: #149ddd;">
+    <a href="{% url 'add_attendance' pk_test=pk_test  %}" style="color: white;">add  attendance</a>
+</button>
+
+{% endif %}
+<br/>
+<br>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ myfilter.form }}
+        <button type="submit" style="background-color:#149ddd; color: white;">search</button>
+      </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+          
+          <th scope="col" width="10%">student</th>
+          <th scope="col" width="10%">status</th>
+          <th scope="col" width="10%">date</th>
+          {% if not a %}
+          <th scope="col" width="10%">delete</th>
+          {% endif %}
+         </tr>
+          {% for journ in obj %}
+       <tr>
+              
+               <td>
+                   {{ journ.student_id }}
+               </td>
+               <td>
+                {{ journ.status }}
+            </td>
+            <td>
+                {{ journ.date }}
+            </td>
+             
+               {% if not a %}
+               
+               <td>
+                   <button style="background-color: red;"><a href="{% url 'remove_attendance' pk_test=journ.id %}" onclick="return confirm('delete this student attendance?')" style="color: white;">delete</a></button>
+               </td>
+               {% endif %}
+           {% endfor %}
+       </tr>
+      </table>
+          
+    </div>
+                
+</div>
+
+
+{% endblock %}

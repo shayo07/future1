@@ -1,0 +1,66 @@
+{% extends "home.html" %}
+{% block content-title %}
+        <h3>STUDENTS LIST</h3>
+{% endblock %}
+ 
+{% block where %}
+<li>students list</li>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div>
+  <button style="background-color:#149ddd;">
+    <a href="{% url 'add_student' %}" style="color: white;">add new student</a>
+  </button>
+</div>
+<br/>
+                <div>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    {{ myfilter.form }}
+                    <button  type="submit" style="background-color:#149ddd; color: white; ">search</button>
+                  </form>
+                </div>
+
+                    
+              
+                <div class="table-responsive">
+                <table class="table table-responsive table-borderless">
+                  <table>
+                  <thead>
+                    <tr class="bg-light">
+                      <th scope="col" width="20%">STUDENT ID</th>
+                      <th scope="col" width="20%">FIRST NAME</th>
+                      <th scope="col" width="20%">LAST NAME</th>
+                      <th scope="col" width="20%">MIDDLE NAME</th>
+                      <th scope="col" width="20%">DETAILS</th>
+
+                      
+                    </tr>
+                  </thead>
+              <tbody>
+                {% for x in data %}
+                <tr>
+                    <td>
+                    {{ x.student_id  }}
+                    </td>
+                    <td>{{ x.first_name }}</td>
+                    <td>{{ x.last_name  }}</td>
+                    <td>{{ x.middle_name  }}</td>
+                   <td><button style="background-color: rgb(8, 184, 8);"><a href="{% url 'student_details' pk_test=x.student_id %}" style="color: white;">view</a></button></td>
+                </tr>
+                    {% endfor %}
+              
+              </tbody>
+            </table>
+              
+              </div>
+                
+            </div>
+
+
+{% endblock %}

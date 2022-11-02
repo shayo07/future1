@@ -1,0 +1,102 @@
+{% extends "home.html" %}
+
+{% block where %}
+<li>teacher registration</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>TEACHER'S PROFILE</h3>
+{% endblock %}
+
+{% block content %}
+
+        
+
+{% if a %}
+
+
+<div>
+  <button style="background-color: #149ddd;">
+  <a href="{% url 'register' %}" style="color: white;">add teacher</a>
+  </button>
+</div>
+
+
+<div class="table-responsive">
+  <table class="table table-responsive table-borderless">
+    <table>
+    <thead>
+      <tr class="bg-light">
+        <th scope="col" width="10%">username</th>
+        <th scope="col" width="10%">email</th>
+        <th scope="col" width="10%">delete</th>
+      </tr>
+    </thead>
+<tbody>
+  {%  for obj in obj %}
+  <tr>
+      <td>{{ obj.username }}</td>
+      <td>{{ obj.email }}</td>
+      <td>
+        <button style="background-color: red;">
+          <a href="{% url 'delete_teacher' pk_test=obj.username %}" style="color: white;" onclick="return confirm('delete teacher?')">delete</a>
+        </button>
+      </td>
+     
+      
+   
+     
+      
+  </tr>
+{% endfor %}
+
+</tbody>
+</table>
+
+{% endif %}
+
+
+  
+ 
+ 
+ 
+
+{% if  not a %}
+<div>
+  <button style="background-color: #149ddd;">
+    <a href="{% url 'add_teacher' %}" style="color: white;">add teacher info</a>
+  </button>
+</div>
+
+<br/>
+
+{% for obj in obj1 %}
+
+<img style="height: 170px; width: 140px;" src="{{ obj.profile_pic.url }}" alt="" class="img-fluid rounded-circle" >
+<br/>
+username:  <label for="">{{ obj.username }}</label>
+<br/>
+first_name: <label for="">{{ obj.first_name }}</label>
+<br/>
+middle_name: <label for="">{{ obj.middle_name }}</label>
+<br/>
+last_name: <label>{{ obj.last_name }}</label>
+<br/>
+tin_number: <label>{{ obj.tin_number }}</label>
+<br/>
+email: <label>{{ obj.email }}</label>
+<br>
+
+<button style="background-color: #149ddd;">
+  <a href="{% url 'edit_teacher' pk_test=obj %}" style="color: white;">edit profile</a>
+</button>
+
+{% endfor %}
+
+
+{% endif %}
+
+
+</div>
+
+{% endblock %}

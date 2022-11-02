@@ -1,0 +1,158 @@
+{% extends 'home.html' %}
+
+
+{% block where %}
+<li>view journal</li>
+{% endblock %}
+
+{% block content-title %}
+<h3>VIEW {{ obj1 }} JOURNAL</h3>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+    <h3>view journal</h3>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-borderless">
+        <table>
+            <tr>
+          <th scope="col" width="50%">journal name</th>
+          <th scope="col" width="50%">time</th>
+          <th scope="col" width="50%">period</th>
+          <th scope="col" width="50%">subject_name</th>
+          <th scope="col" width="50%">concept_covered</th>
+          <th scope="col" width="50%">teacher's_comment</th>
+          <th scope="col" width="50%">teacher's_name</th>
+          <th scope="col" width="50%">cl_comment</th>
+          <th scope="col" width="50%">class_teacher</th>
+          
+          {% if not a %}
+          <th scope="col" width="10%">edit</th>
+          <th scope="col" width="10%">delete</th>
+          {% endif %}
+         </tr>
+          {% for journ in obj2 %}
+       <tr>
+               <td>
+                  {{ journ.j_id }}
+               </td>
+               <td>
+                   {{ journ.time }}
+               </td>
+               <td>
+                {{ journ.period }}
+               </td>
+               <td>
+                {{ journ.subject_name }}
+             </td>
+             <td>
+                {{ journ.concept_covered }}
+             </td>
+             <td>
+                {{ journ.sub_teachers_comment }}
+             </td>
+             <td>
+                {{ journ.sub_teachers_name }}
+             </td>
+             <td>
+                {{ journ.class_leaders_comment }}
+             </td>
+             <td>
+                {{ journ.class_teacher }}
+             </td>
+           
+               
+               {% if not a %}
+               <td>
+                  <button style="background-color: orange; "><a href="{% url 'edit_journ' pk_test=journ.id %}">edit</a></button>
+                 </td>
+               
+               <td>
+                   <button style="background-color: red;"><a href="{%  url 'remove_journal' pk_test=journ.id %}" onclick="return confirm('do you want to delete?')">delete</a></button>
+               </td>
+               {% endif %}
+           {% endfor %}
+       </tr>
+      </table>
+          <hr>
+      <br>
+      <br>
+      <h3>view journal daily report</h3>
+      
+      <a href="{% url 'add_journdr' pk_test=obj1 %}">add daily report</a>
+      <table>
+         <tr>
+       <th scope="col" width="10%">journal_name</th>
+       <th scope="col" width="10%">teacher</th>
+       <th scope="col" width="10%">periods_taught</th>
+       <th scope="col" width="10%">periods_not taught</th>
+       <th scope="col" width="10%">reason_for_not taught</th>
+       <th scope="col" width="10%">class_leader comment</th>
+       <th scope="col" width="10%">class_teacher comment</th>
+       <th scope="col" width="10%">academic_master comment</th>
+       <th scope="col" width="10%">head_of_school comment</th>
+       {% if not a %}
+       <th scope="col" width="10%">edit</th>
+       <th scope="col" width="10%">delete</th>
+       {% endif %}
+      </tr>
+       {% for journ in obj3 %}
+    <tr>
+            <td>
+               {{ journ.j_id }}
+            </td>
+            <td>
+                {{ journ.class_teacher }}
+            </td>
+            <td>
+             {{ journ.no_period_taught }}
+            </td>
+            <td>
+             {{ journ.number_periods_nottaught }}
+          </td>
+          <td>
+             {{ journ.reason_nottaught }}
+          </td>
+          <td>
+             {{ journ.cl_comment }}
+          </td>
+          <td>
+             {{ journ.ct_comment }}
+          </td>
+          <td>
+             {{ journ.am_comment }}
+          </td>
+          <td>
+             {{ journ.hs_comment }}
+          </td>
+         
+          {% if not a %}
+            <td>
+               <button style="background-color: orange;"><a href="{% url 'edit_journdr' pk_test=journ.id %}">edit</a></button>
+              </td>
+            
+            <td>
+                <button style="background-color: red;"><a href="{% url 'remove_journdr' pk_test=journ.id %}" onclick="return confirm('do you want to delete?')">delete</a></button>
+            </td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+   </table>
+
+
+
+    </div>
+                
+</div>
+
+
+
+
+
+
+{% endblock %}
