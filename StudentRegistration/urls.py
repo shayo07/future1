@@ -18,7 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('login/', include('Student.urls')),
     path('/', include('Subjects.urls')),
     path('/', include('SchemeOfWork.urls')),
@@ -26,13 +25,5 @@ urlpatterns = [
     path('/', include('lessondevelopment.urls')),
     path('/', include('Journal.urls')),
     path('/', include('Attendance.urls')),
-=======
-    path('home/', include('Student.urls')),
-    path('', include('Subjects.urls')),
-    path('', include('SchemeOfWork.urls')),
-    path('', include('Logbooks.urls')),
-    path('', include('lessondevelopment.urls')),
-    path('', include('Journal.urls')),
-    path('', include('Attendance.urls')),
->>>>>>> c93b987 (my second commit)
+
 ]
